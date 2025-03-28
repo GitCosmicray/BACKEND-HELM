@@ -1,7 +1,6 @@
 replicaCount: 2
 
 image:
-
   backend:
     repository: 248189933829.dkr.ecr.us-west-2.amazonaws.com/flask-backend
     tag: ""
