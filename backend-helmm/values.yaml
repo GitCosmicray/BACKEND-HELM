@@ -6,8 +6,7 @@ image:
     repository: 248189933829.dkr.ecr.us-west-2.amazonaws.com/flask-backend
     tag: ""
 
-sevice:
-
+service:
   backend:
     type: ClusterIP
     port: 80
