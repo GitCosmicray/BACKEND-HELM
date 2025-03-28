@@ -42,10 +42,20 @@ jobs:
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws configure set region ${{ secrets.AWS_REGION }}
 
+      - name: Check Docker Daemon
+        run: |
+          echo "Checking Docker daemon status..."
+          sudo systemctl status docker
+
+      - name: Check Network Connectivity
+        run: |
+          echo "Checking network connectivity..."
+          ping -c 4 google.com
+
       - name: Login to AWS ECR
         run: |
           echo "Logging in to AWS ECR..."
-          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPO }}
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPO }} || (sleep 10 && aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPO }})
 
       - name: Build Docker image
         run: |
