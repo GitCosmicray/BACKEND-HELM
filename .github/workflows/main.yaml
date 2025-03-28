@@ -44,11 +44,8 @@ jobs:
 
       - name: Login to AWS ECR
         run: |
-          for i in {1..5}; do
-            echo "Attempt $i: Logging in to AWS ECR..."
-            aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPO }} && break || sleep 10
-          done
-
+          echo "Logging in to AWS ECR..."
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECR_REPO }}
 
       - name: Build Docker image
         run: |
