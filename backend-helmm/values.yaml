@@ -13,5 +13,5 @@ service:
 ingress:
   enabled: true
   className: nginx
-#  host: aa9c0dcf3a39a40c0b337039ee79da89-1225075295.us-west-2.elb.amazonaws.com  
+#  host: aa9c0dcf3a39a40c0b337039ee79da89-1225075295.us-west-2.elb.amazonaws.com  #
   annotations: {}
